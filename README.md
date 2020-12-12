@@ -51,10 +51,10 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :buyer
+- belongs_to :shipping_address
 
 
-## shipping_address テーブル
+## shipping_addresses テーブル
 
 | Column         | Type       | Options               |
 | -------------- | ---------- | --------------------- | 
@@ -67,4 +67,5 @@
 | tel            | string     |  NOT NULL             |
 ### Association
 
-- belongs_to :buyer
+
+- has_one :buyer
