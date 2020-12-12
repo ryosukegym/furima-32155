@@ -16,21 +16,21 @@
 ### Association
 
 - has_many :items
-- has_many :buyer
+- has_many :buyers
 
 ## items テーブル
 
-| Column                | Type       | Options           |
-| --------------------- | ---------- | ----------------- |
-| title                 | string     | NOT NULL          |
-| explanation           | string     | NOT NULL          |
-| category_id           | string     | NOT NULL          |
-| product_condition_id  | string     | NOT NULL          |
-| delivery_fee_id       | string     | NOT NULL          |
-| prefectural_id        | string     | NOT NULL          |
-| day_to_ship_id        | string     | NOT NULL          |
-| price                 | integer    | NOT NULL          |
-| user                  | references | foreign_key: true |
+| Column                | Type        | Options           |
+| --------------------- | ----------- | ----------------- |
+| title                 | string      | NOT NULL          |
+| explanation           | text        | NOT NULL          |
+| category_id           | integer     | NOT NULL          |
+| product_condition_id  | integer     | NOT NULL          |
+| delivery_fee_id       | integer     | NOT NULL          |
+| prefectural_id        | integer     | NOT NULL          |
+| day_to_ship_id        | integer     | NOT NULL          |
+| price                 | integer     | NOT NULL          |
+| user                  | references  | foreign_key: true |
 
 
 
@@ -42,7 +42,7 @@
 
 ## buyers テーブル
 
-| Column      | Type       | Options---------- |
+| Column      | Type       | Options           |
 | ----------- | ---------- | ----------------- |
 | user        | references | foreign_key: true |
 | item        | references | foreign_key: true |
@@ -56,15 +56,15 @@
 
 ## shipping_address テーブル
 
-| Column      | Type       | Options               |
-| ----------- | ---------- | --------------------- | 
-| postal_code | string     |  NOT NULL             |
-| prefectural | references |  NOT NULL             |
-| city        | string     |  NOT NULL     |
-| street      | string     |  NOT NULL             |
-| buyer       | references |  NOT NULL             |
-| building    | string     |  NOT NULL             |
-| tel         | integer    | : false, unique: true |
+| Column         | Type       | Options               |
+| -------------- | ---------- | --------------------- | 
+| postal_code    | string     |  NOT NULL             |
+| prefectural_id | integer    |  NOT NULL             |
+| city           | string     |  NOT NULL             |
+| street         | string     |  NOT NULL             |
+| buyer          | references |  foreign_key: true    |
+| building       | string     |                       |
+| tel            | string     |  NOT NULL             |
 ### Association
 
 - belongs_to :buyer
