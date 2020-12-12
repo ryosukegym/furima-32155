@@ -29,7 +29,7 @@
 | delivery_fee_id       | string     | NOT NULL          |
 | prefectural_id        | string     | NOT NULL          |
 | day_to_ship_id        | string     | NOT NULL          |
-| price                 | integer    |                   |
+| price                 | integer    | NOT NULL          |
 | user                  | references | foreign_key: true |
 
 
@@ -60,9 +60,9 @@
 | ----------- | ---------- | --------------------- | 
 | postal_code | string     |  NOT NULL             |
 | prefectural | references |  NOT NULL             |
-| city        | string     |  NOT NULL             |
+| city        | string     |  NOT NULL     |
 | street      | string     |  NOT NULL             |
-| buyer       | references |                       |
+| buyer       | references |  NOT NULL             |
 | building    | string     |  NOT NULL             |
 | tel         | integer    | : false, unique: true |
 ### Association
