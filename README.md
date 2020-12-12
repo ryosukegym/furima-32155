@@ -9,8 +9,6 @@
 | password             | string  | NOT NULL    |
 | last_name            | string  | NOT NULL    |
 | first_name           | string  | NOT NULL    |
-| first_name_hiragana  | string  | NOT NULL    |
-| last_name_hiragana   | string  | NOT NULL    |
 | first_name_katakana  | string  | NOT NULL    |
 | last_name_katakana   | string  | NOT NULL    |
 | birthday             | date    | NOT NULL    |
