@@ -10,21 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_16_060104) do
+ActiveRecord::Schema.define(version: 2020_12_16_081524) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.text "explanation", null: false
+    t.integer "category_id", null: false
+    t.integer "product_condition_id", null: false
+    t.integer "delivery_fee_id", null: false
+    t.integer "prefectural_id", null: false
+    t.integer "day_to_ship_id", null: false
+    t.integer "price", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "nickname", null: false
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "first_name_katakana", null: false
-    t.string "last_name_katakana", null: false
+    t.string "nickname", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "first_name", default: "", null: false
+    t.string "first_name_katakana", default: "", null: false
+    t.string "last_name_katakana", default: "", null: false
     t.date "birthday", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -35,4 +45,5 @@ ActiveRecord::Schema.define(version: 2020_12_16_060104) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "users"
 end
