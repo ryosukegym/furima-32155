@@ -11,10 +11,10 @@ class User < ApplicationRecord
   validates :birthday, presence: true
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '全角文字を使用してください' } do
-    validates :last_name, presence: true
-    validates :first_name, presence: true
-    validates :last_name_katakana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
-    validates :first_name_katakana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
+    validates :last_name
+    validates :first_name
+    validates :last_name_katakana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
+    validates :first_name_katakana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
   end
   
 
