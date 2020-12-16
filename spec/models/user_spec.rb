@@ -17,6 +17,30 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Nickname can't be blank")
     end
 
+    it 'last_nameが空では登録できないこと' do
+      @user.last_name = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name 全角文字を使用してください")
+    end
+
+    it 'first_nameが空では登録できないこと' do
+      @user.first_name = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name can't be blank", "First name 全角文字を使用してください")
+    end
+
+    it 'first_name_katakanaカタカナ以外では登録できないこと' do
+      @user.first_name_katakana = "hoge"
+      @user.valid?
+      expect(@user.errors.full_messages).to include( "First name katakana はカタカナで入力して下さい。")
+    end
+
+    it 'last_name_katakanaカタカナ以外では登録できないこと' do
+      @user.last_name_katakana = "hoge"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name katakana はカタカナで入力して下さい。")
+    end
+
     it 'emailが空では登録できないこと' do
       @user.email = nil
       @user.valid?
@@ -59,6 +83,18 @@ RSpec.describe User, type: :model do
       another_user = FactoryBot.build(:user, email: @user.email)
       another_user.valid?
       expect(another_user.errors.full_messages).to include('Email has already been taken')
+    end
+
+    it 'emailに@を含まない場合は登録できないこと' do
+      @user.email = 'hoge'
+      @user.valid?
+      expect(@user.errors.full_messages).to include( "Email is invalid")
+    end
+
+    it '誕生日は空では登録できないこと' do
+      @user.birthday = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
   end
 end

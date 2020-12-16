@@ -8,19 +8,15 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください' 
 
   validates :nickname, presence: true
+  validates :birthday, presence: true
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '全角文字を使用してください' } do
     validates :last_name, presence: true
     validates :first_name, presence: true
-    validates :last_name_katakana, presence: true
-    validates :first_name_katakana, presence: true
+    validates :last_name_katakana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
+    validates :first_name_katakana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
   end
-
-  #  validates :last_name, pretence: true
-  #  validates :first_name, pretence: true
-  #  validates :last_name_katakana, pretence: true
-  #  validates :first_name_katakana, pretence: true
-  #  validates :birthday, presence: true
+  
 
   has_many :items
   has_many :buyers
