@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
   before do
-    @user = FactoryBot.build(:user)
     @item = FactoryBot.build(:item)
   end
 
@@ -45,6 +44,18 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
 
+      it 'price半角英数混合では登録できないこと' do
+        @item.price = "t12t"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it 'price半角英語だけでは登録できないこと' do
+        @item.price = "test"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
       it 'priceが9,999,999より大きいと出品できない' do
         @item.price = 10_000_000
         @item.valid?
@@ -52,9 +63,9 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが全角数字だと出品できない' do
-        @item.price = ''
+        @item.price = '１１１'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank", 'Price is not a number', 'Price 半角数字のみ保存可能であること')
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
 
       it 'category_idが1だと出品できない' do

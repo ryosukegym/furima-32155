@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  extend ActiveHash::Associations::ActiveRecordExtensions
   # belongs_to_active_hash :region
   before_action :move_to_index, only: [:new]
 
