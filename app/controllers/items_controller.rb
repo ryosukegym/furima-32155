@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:new]
 
   def index
+    @items = Item.all
   end
 
   def new
@@ -18,6 +19,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
   private
 
   def item_params
