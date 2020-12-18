@@ -27,8 +27,6 @@ class ItemsController < ApplicationController
   #   @item = Item.find(params[:id])
 
 
-    end
-
 
 
   private
