@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   # belongs_to_active_hash :region
-  before_action :move_to_index, only: [:new]
+  before_action :move_to_index, only: [:new,:edit]
 
   def index
     @items = Item.all.includes(:user)
@@ -25,6 +25,13 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    if user_signed_in? 
+      if current_user.id!=@item.user.id
+        redirect_to root_path
+      end
+    else
+      render :index
+    end
   end
   
 
