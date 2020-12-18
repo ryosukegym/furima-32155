@@ -36,7 +36,7 @@
     <%# //商品が売れていない場合はこちらを表示しましょう %>
 
      <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.explanation %></span>
     </div>
     <table class="detail-table">
       <tbody>
@@ -62,7 +62,7 @@
         </tr>
         <tr> 
           <th class="detail-item">発送日の目安</th>
-           <td class="detail-value"><%= @item.day_to_ship[:name] %></td>
+           <td class="detail-value"><%= @item.day_to_ship[:data] %></td>
         </tr> 
       </tbody>
     </table>
@@ -102,7 +102,7 @@
     </a>
   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href=“#” class=‘another-item’><%= @item.category %>をもっと見る</a>
+  <a href=“#” class=‘another-item’><%= @item.category[:name] %>をもっと見る</a>
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
