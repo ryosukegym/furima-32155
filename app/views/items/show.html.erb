@@ -4,7 +4,7 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= "商品名" %>
+      <%= @item.title %>
     </h2>
     <div class='item-img-content'>
       <%= image_tag @item.image,class:"item-box-img" %>
@@ -24,10 +24,13 @@
     </div>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-
-    <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
-    <p class='or-text'>or</p>
-    <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
+    <% if user_signed_in? %>
+      <% if current_user.id==@item.user.id %>
+        <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+        <p class='or-text'>or</p>
+        <%= link_to '削除', item_path, method: :delete, class:'item-destroy' %>
+      <% end %>
+    <% end %>
 
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
@@ -36,35 +39,35 @@
 
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
-    <% <div class="item-explain-box">%>
+     <div class="item-explain-box">
       <span><%= "商品説明" %></span>
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <%# <td class="detail-value"><%= @item.user.nickname %></td> %>
+           <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <%# <td class="detail-value"><%= @item.category[:name] %></td> %>
+          <td class="detail-value"><%= @item.category[:name] %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <%# <td class="detail-value"><%= @item.product_condition[:name] %></td>
-        </tr> %>
+          <td class="detail-value"><%= @item.product_condition[:name] %></td>
+        </tr> 
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <%# <td class="detail-value"><%= @item.delivery_fee[:name] %></td> %>
+          <td class="detail-value"><%= @item.delivery_fee[:name] %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <%# <td class="detail-value"><%= @item.prefectural[:name] %></td>
+           <td class="detail-value"><%= @item.prefectural[:name] %></td>
         </tr>
-        <tr> %>
+        <tr> 
           <th class="detail-item">発送日の目安</th>
-          <%# <td class="detail-value"><%= @item.day_to_ship[:name] %></td>
-        </tr> %>
+           <td class="detail-value"><%= @item.day_to_ship[:name] %></td>
+        </tr> 
       </tbody>
     </table>
     <div class="option">
@@ -78,7 +81,7 @@
       </div>
     </div>
   </div>
-  <%# /商品の概要 %>
+  <%# <% /商品の概要 %> %>
 
   <div class="comment-box">
     <form>
@@ -103,7 +106,7 @@
     </a>
   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href=“#” class=‘another-item’><%= "商品のカテゴリー名" %>をもっと見る</a>
+  <a href=“#” class=‘another-item’><%= @item.category %>をもっと見る</a>
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
