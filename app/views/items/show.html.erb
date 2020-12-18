@@ -7,7 +7,7 @@
       <%= "商品名" %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag item.image,class:"item-box-img" %>
+      <%= image_tag @item.image,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
@@ -36,35 +36,35 @@
 
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
-    <div class="item-explain-box">
+    <% <div class="item-explain-box">%>
       <span><%= "商品説明" %></span>
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.user.nickname %></td>
+          <%# <td class="detail-value"><%= @item.user.nickname %></td> %>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @item.category[:name] %></td>
+          <%# <td class="detail-value"><%= @item.category[:name] %></td> %>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= @item.product_condition[:name] %></td>
-        </tr>
+          <%# <td class="detail-value"><%= @item.product_condition[:name] %></td>
+        </tr> %>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @item.delivery_fee[:name] %></td>
+          <%# <td class="detail-value"><%= @item.delivery_fee[:name] %></td> %>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= @item.prefectural[:name] %></td>
+          <%# <td class="detail-value"><%= @item.prefectural[:name] %></td>
         </tr>
-        <tr>
+        <tr> %>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @item.day_to_ship[:name] %></td>
-        </tr>
+          <%# <td class="detail-value"><%= @item.day_to_ship[:name] %></td>
+        </tr> %>
       </tbody>
     </table>
     <div class="option">
@@ -107,4 +107,4 @@
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
-<%= render "shared/footer" %>
+<%= render "shared/footer" %> %>
