@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   before_action :move_to_index, only: [:new,:edit]
   before_action :item_find, only: [:update,:show,:edit]
+  before_action :item_user, only: [:edit,:update]
 
   def index
     @items = Item.all.includes(:user)
@@ -25,19 +26,14 @@ class ItemsController < ApplicationController
 
   def edit
     if current_user.id!=@item.user.id
-        redirect_to root_path
+        redirect_to item_path
     end
   end
   
 
   def update
-    if @item.update(item_params)
-       if current_user.id!=@item.user.id
-       end
-      redirect_to item_path
-    else
-      render :edit
-    end
+    @item.update(item_params)
+
 
     end
   end
@@ -56,4 +52,9 @@ class ItemsController < ApplicationController
 
   def item_find
     @item = Item.find(params[:id])
+  end
+
+  def item_user
+    if current_user.id!=@item.user.id
+      redirect_to item_path
   end
