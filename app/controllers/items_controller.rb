@@ -25,17 +25,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id!=@item.user.id
-        redirect_to item_path
-    end
   end
   
 
   def update
     @item.update(item_params)
-
-
-    end
   end
   private
 
