@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to item_path
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
   #   redirect_to new_user_session_path
   #   end
   # 残している理由、authenticate_userに変えていることをお思い出すため！！！
-  end
+
 
   def item_find
     @item = Item.find(params[:id])
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
 
   def item_user
     if current_user.id!=@item.user.id
-      redirect_to root_path
+      redirect_to item_path
     end
   end
 end
