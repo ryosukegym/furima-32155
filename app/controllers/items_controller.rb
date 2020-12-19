@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-
-  before_action :move_to_index, only: [:new,:edit]
+  before_action :authenticate_user!,only: [:new,:edit]
+  # before_action :move_to_index, only: [:new,:edit]
+  # 下記理由記載
   before_action :item_find, only: [:update,:show,:edit]
   before_action :item_user, only: [:edit,:update]
 
@@ -42,10 +43,11 @@ class ItemsController < ApplicationController
                                  :day_to_ship_id, :price, :image).merge(user_id: current_user.id)
   end
 
-  def move_to_index
-    unless user_signed_in?
-    redirect_to new_user_session_path
-    end
+  # def move_to_index
+  #   unless user_signed_in?
+  #   redirect_to new_user_session_path
+  #   end
+  # 残している理由、authenticate_userに変えていることをお思い出すため！！！
   end
 
   def item_find
@@ -54,7 +56,7 @@ class ItemsController < ApplicationController
 
   def item_user
     if current_user.id!=@item.user.id
-      redirect_to item_path
+      redirect_to root_path
     end
   end
 end
