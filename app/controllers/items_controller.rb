@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!,only: [:new,:edit]
+  before_action :authenticate_user!,only: [:new,:edit,]
   # before_action :move_to_index, only: [:new,:edit]
   # 下記理由記載
   before_action :item_find, only: [:update,:show,:edit,:destroy]
-  before_action :item_user, only: [:edit,:update]
+  before_action :item_user, only: [:edit,:update,:destroy]
 
   def index
     @items = Item.all.includes(:user)
@@ -39,7 +39,6 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to root_path
   end
   private
 
