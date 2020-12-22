@@ -44,14 +44,14 @@
 
 | Column      | Type       | Options           |
 | ----------- | ---------- | ----------------- |
-| user        | references | foreign_key: true |
-| item        | references | foreign_key: true |
+| user_id        | references | foreign_key: true |
+| item_id        | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :shipping_address
+- has_one :shipping_address
 
 
 ## shipping_addresses テーブル
@@ -68,4 +68,4 @@
 ### Association
 
 
-- has_one :buyer
+- belongs_to :buyer
