@@ -1,6 +1,6 @@
 class BuyerAddress
   include ActiveModel::Model
-  attr_accessor :user_id,:item_id,:postal_code,:prefectural_id,:city,:street,:buyer,:building,:tel,:token
+  attr_accessor :user_id,:item_id,:postal_code,:prefectural_id,:city,:street,:building,:tel,:token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
