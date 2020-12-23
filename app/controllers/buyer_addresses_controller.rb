@@ -5,8 +5,10 @@ class BuyerAddressesController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @buyer_address = BuyerAddress.new
-    if current_user.id==@item.user.id
+    if current_user.id==@item.user.id || if @item.buyer!='nil'
        redirect_to root_path
+     end
+      
     end
 
   end
