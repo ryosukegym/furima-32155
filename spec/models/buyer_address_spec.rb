@@ -26,6 +26,12 @@ RSpec.describe BuyerAddress, type: :model do
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include("Prefectural can't be blank")
       end
+
+      it '・prefectural_idが0では購入できない' do
+        @buyer_address.prefectural_id = 0
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Prefectural must be other than 0")
+      end
   
 
       it 'postal_codeがなければ購入できない' do
@@ -71,6 +77,17 @@ RSpec.describe BuyerAddress, type: :model do
         @buyer_address.token = nil
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが空では購入できないこと' do
+        @buyer_address.postal_code = nil
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid")
+      end
+
+      it 'item_idが空では購入できないこと' do
+        @buyer_address.postal_code = nil
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid")
       end
     end
   end

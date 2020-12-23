@@ -1,5 +1,5 @@
 class BuyerAddressesController < ApplicationController
-  before_action :authenticate_user!,only: [:index]
+  before_action :authenticate_user!,only: [:index,:create]
   before_action :item_buyer,only: [:index,:create]
 
 
