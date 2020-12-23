@@ -57,6 +57,16 @@ RSpec.describe BuyerAddress, type: :model do
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include("Tel can't be blank")
       end
+      it 'telが12桁以上では購入できない' do
+        @buyer_address.tel = '090123412341'
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Tel is invalid")
+      end
+      it 'telが英数混合では購入できない' do
+        @buyer_address.tel = 'a90123412341'
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Tel is invalid")
+      end
       it "tokenが空では登録できないこと" do
         @buyer_address.token = nil
         @buyer_address.valid?

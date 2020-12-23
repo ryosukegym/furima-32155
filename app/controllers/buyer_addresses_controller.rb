@@ -8,10 +8,6 @@ class BuyerAddressesController < ApplicationController
     if current_user.id==@item.user.id || @item.buyer!=nil
        redirect_to root_path
     end
-
-  end
-
-  def new
     
   end
 
@@ -29,7 +25,7 @@ class BuyerAddressesController < ApplicationController
 
   private
   def buyer_address_params
-     params.require(:buyer_address).permit(:postal_code,:prefectural_id,:city,:street,:buyer,:building,:tel).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
+     params.require(:buyer_address).permit(:postal_code,:prefectural_id,:city,:street,:building,:tel).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
   end
 
   def pay_item
